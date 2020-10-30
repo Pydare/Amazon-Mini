@@ -33,16 +33,21 @@ class ItemComponent extends Component{
             }
         )
         
-    }4
+    }
 
     getContent(){
-        const itemId = "?id=" + this.props.itemId 
+        const itemId = "?id=" + this.props.location.state.itemId 
         return axios.get(ITEMS_URL + itemId);
     }
 
     addToCart(){
-        const body = {"username":AuthService.getCurrentUser().username, "itemId":this.props.itemId, "quantity":1}
+        const body = {"username":AuthService.getCurrentUser().username, "itemId":this.props.location.state.itemId, "quantity":1}
         return axios.post(ADD_TO_CART + 'addToCart', body, { headers: authHeader() })
+    }
+
+    removeFromCart(){
+        const body = {"username":AuthService.getCurrentUser().username, "itemId":this.props.location.state.itemId, "quantity":1}
+        return axios.post(ADD_TO_CART + 'removeFromCart', body, { headers: authHeader() })
     }
 
     render(){
@@ -51,8 +56,9 @@ class ItemComponent extends Component{
         return(
             <div>
                 {listItem}
-                {"  "}
+                <br/>
                 <button onSubmit={this.addToCart()}>addToCart</button>
+                <button onSubmit={this.removeFromCart()}>removeFromCart</button>
             </div>
         )
     }

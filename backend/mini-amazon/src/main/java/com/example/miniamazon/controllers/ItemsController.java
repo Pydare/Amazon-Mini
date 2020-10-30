@@ -3,7 +3,6 @@ package com.example.miniamazon.controllers;
 import com.example.miniamazon.model.Item;
 import com.example.miniamazon.model.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

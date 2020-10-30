@@ -123,7 +123,8 @@ class App extends Component {
             <Route path="/user" component={BoardUser} />
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
-            <Route path="/item" render={(props) => (<ItemComponent {...props} itemId={2} />)}/>
+            {/* <Route path="/item" render={(props) => (<ItemComponent {...props} itemId={2} />)}/> */}
+            <Route path="/item/:id" component={ItemComponent} />
           </Switch>
         </div>
       </div>

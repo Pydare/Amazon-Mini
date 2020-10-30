@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import UserService from "../services/user.service";
-import ItemComponent from "./item.component";
-
-
-// const ADD_TO_CART = "http://localhost:8080/api/cart/";
-// const ITEMS_URL = "http://localhost:8080/api/items/";
 
 
 export default class Home extends Component {
@@ -40,14 +35,12 @@ export default class Home extends Component {
 
     render(){
         const items   = this.state.content
-        const listItems = Object.keys(items).map((key,i)  => <li key={i}>
-                                                                <Link to="/item">
-                                                                Item {items[key]["id"]} 
-                                                                </Link>
-                                                                <Route path="/item" render={(props) => (
-                                                                    <ItemComponent {...props} itemId={items[key]["id"]} />
-                                                                )}/>
-                                                            </li>)
+        const listItems = Object.keys(items).map(
+                                                (key,i)  => <li key={i}>
+                                                <Link to={{pathname:`/item/${items[key]["id"]}`, state:{itemId:items[key]["id"]}}}>
+                                                Item {items[key]["id"]} 
+                                                </Link>
+                                            </li>)
 
         return (
             <div className="container">
