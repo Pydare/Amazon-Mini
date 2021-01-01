@@ -6,10 +6,10 @@ class AuthService{
 
     login(username, password){
         return axios
-        .post(API_URL + "signin",{username, password})
+        .post(API_URL + "signin", {username, password})
         .then(response => {
             if (response.data.token){
-                localStorage.setItem("user",JSON.stringify(response.data))
+                localStorage.setItem("user", JSON.stringify(response.data))
                 console.log(JSON.stringify(response.data))
             }
             return response.data;
@@ -21,7 +21,7 @@ class AuthService{
     }
 
     register(username, email, password){
-        return axios.post(API_URL + "signup", {username,email,password});
+        return axios.post(API_URL + "signup", {username, email, password});
     }
 
     getCurrentUser(){

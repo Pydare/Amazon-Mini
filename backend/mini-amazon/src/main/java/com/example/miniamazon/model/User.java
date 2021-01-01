@@ -33,15 +33,16 @@ public class User {
         @Size(max = 120)
         private String password;
 
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.LAZY) // fetch type lazy does persist the collection data type on request due to
+                                        // memory, but the eager does that
         @JoinTable(	name = "user_roles",
                 joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id"))
+                inverseJoinColumns = @JoinColumn(name = "role_id"))// creates a new table with relating properties as PK
         private Set<Role> roles = new HashSet<>();
 
-        @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "cart_id", referencedColumnName = "id")
-        @JsonIgnore
+        @OneToOne(cascade = CascadeType.ALL) // cascade type all should always be used on the parent end (onetomany)
+        @JoinColumn(name = "cart_id", referencedColumnName = "id") // whoever owns the foreign key gets this annotation
+        @JsonIgnore // marks a field in a POJO to be ignored by Jackson during serialization and deserialization
         private Cart cart;
 
         public User() {

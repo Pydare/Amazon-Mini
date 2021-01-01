@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+@Component  // A Java class decorated with @Component is found during classpath scanning and registered in the context as
+            // a Spring bean. @Service, @Repository, and @Controller are specializations of @Component,
+            // which are used for more specific cases.
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 

@@ -12,6 +12,7 @@ public class MiniAmazonApplication {
 
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MiniAmazonApplication.class, args);
 	}
 

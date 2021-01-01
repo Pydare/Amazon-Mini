@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
+@Configuration // indicates that the class has @Bean definition methods. So Spring container can process the class and generate Spring Beans to be used in the application.
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
         // securedEnabled = true,
@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
+                .antMatchers("/api/test/**").permitAll() // permit all is used for the case when there's no special role
                 .antMatchers("/api/items/**").permitAll()
                 .anyRequest().authenticated();
 
